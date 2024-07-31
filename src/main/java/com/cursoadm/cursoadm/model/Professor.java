@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +18,7 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String nome;
-    @Column
-    private String materia;
+    private String nomeDoProfessor;
+    @OneToMany(mappedBy = "professor")
+    private List<Curso> cursos;
 }

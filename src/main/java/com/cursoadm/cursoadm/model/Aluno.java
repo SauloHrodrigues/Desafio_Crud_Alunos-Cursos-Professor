@@ -19,5 +19,6 @@ public class Aluno {
     private Long id;
     @Column
     private String nomeDoAluno;
-    private List<Curso> cursos = new ArrayList<>();
+    @ManyToMany(mappedBy = "listaDeAlunos")
+    private List<Curso> cursos ;
 }
