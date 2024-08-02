@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,8 +18,7 @@ public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private String nomeDoProfessor;
-    @OneToMany(mappedBy = "professor")
-    private List<Curso> cursos;
+    private String nome;
+    private String cpf;
+    private List<Curso> cursos= new ArrayList<>();
 }

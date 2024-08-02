@@ -17,8 +17,8 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private String nomeDoAluno;
-    @ManyToMany(mappedBy = "listaDeAlunos")
+    private String nome;
+    private String cpf;
+
     private List<Curso> cursos ;
 }

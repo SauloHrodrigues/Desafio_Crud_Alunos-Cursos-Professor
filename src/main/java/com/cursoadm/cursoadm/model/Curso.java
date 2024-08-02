@@ -17,17 +17,9 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private String nomeDoCurso;
-
-    @ManyToMany
-    @JoinTable(name = "curso_aluno",
-    joinColumns = @JoinColumn(name = "curso_fk"),
-    inverseJoinColumns = @JoinColumn(name = "aluno_fk"))
+    private String nome;
     private List<Aluno> listaDeAlunos;
 
-    //    @Column
-    @ManyToOne
-    @JoinColumn(name = "id_do_professor")
     private Professor professor; // => https://www.youtube.com/watch?v=13ENb1zFfUk
+
 }
