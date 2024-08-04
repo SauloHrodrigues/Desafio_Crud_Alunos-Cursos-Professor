@@ -1,4 +1,5 @@
 package com.cursoadm.cursoadm.model;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,18 +9,19 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private List<Aluno> listaDeAlunos;
+    private String curso;
 
-    private Professor professor; // => https://www.youtube.com/watch?v=13ENb1zFfUk
+    @ManyToOne
+    @JoinColumn(name = "p_id", nullable = false)
+    private Professor prof;
 
 }
