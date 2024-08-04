@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,5 +24,10 @@ public class Curso {
     @ManyToOne
     @JoinColumn(name = "p_id", nullable = false)
     private Professor prof;
+    @ManyToMany
+    @JoinTable(name = "Tabela_de_Juncao",
+                joinColumns = @JoinColumn(name = "curso_FK"),
+                inverseJoinColumns = @JoinColumn(name = "aluno_fk"))
+    private Set<Aluno> alunos;
 
 }
