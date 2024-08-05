@@ -1,9 +1,8 @@
 package com.cursoadm.cursoadm.controllers;
 
-import com.cursoadm.cursoadm.dtos.AlunoResponseDto;
-import com.cursoadm.cursoadm.dtos.CursoRequestDTO;
-import com.cursoadm.cursoadm.dtos.CursoResponseDTO;
-import com.cursoadm.cursoadm.model.Curso;
+import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
+import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
 import com.cursoadm.cursoadm.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

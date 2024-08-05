@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -20,6 +21,6 @@ public class Aluno {
     private String nome;
     private String cpf;
     @ManyToMany(mappedBy = "alunos")
-    private Set<Curso> cursos;
+    private Set<Curso> cursos= new HashSet<>();
 
 }

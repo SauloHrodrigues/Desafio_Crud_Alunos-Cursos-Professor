@@ -1,8 +1,8 @@
 package com.cursoadm.cursoadm.services;
 
-import com.cursoadm.cursoadm.dtos.AlunoResponseDto;
-import com.cursoadm.cursoadm.dtos.CursoRequestDTO;
-import com.cursoadm.cursoadm.dtos.CursoResponseDTO;
+import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
+import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
 import com.cursoadm.cursoadm.mappers.AlunoMapper;
 import com.cursoadm.cursoadm.mappers.CursoMapper;
 import com.cursoadm.cursoadm.model.Aluno;

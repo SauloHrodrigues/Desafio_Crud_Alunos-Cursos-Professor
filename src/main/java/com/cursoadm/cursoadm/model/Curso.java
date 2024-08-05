@@ -26,8 +26,8 @@ public class Curso {
     private Professor prof;
     @ManyToMany
     @JoinTable(name = "Tabela_de_Juncao",
-                joinColumns = @JoinColumn(name = "curso_FK"),
-                inverseJoinColumns = @JoinColumn(name = "aluno_fk"))
+                joinColumns = @JoinColumn(name = "curso_id"),
+                inverseJoinColumns = @JoinColumn(name = "aluno_id"))
     private Set<Aluno> alunos;
 
 }

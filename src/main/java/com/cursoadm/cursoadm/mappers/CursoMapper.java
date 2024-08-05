@@ -1,7 +1,7 @@
 package com.cursoadm.cursoadm.mappers;
 
-import com.cursoadm.cursoadm.dtos.CursoRequestDTO;
-import com.cursoadm.cursoadm.dtos.CursoResponseDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
 import com.cursoadm.cursoadm.model.Curso;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;

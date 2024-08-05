@@ -1,4 +1,4 @@
-package com.cursoadm.cursoadm.dtos;
+package com.cursoadm.cursoadm.dtos.curso;
 
 import com.cursoadm.cursoadm.model.Aluno;
 import com.cursoadm.cursoadm.model.Professor;
