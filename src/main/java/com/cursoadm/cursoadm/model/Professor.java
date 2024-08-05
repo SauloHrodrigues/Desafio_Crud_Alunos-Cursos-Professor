@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -20,7 +21,7 @@ public class Professor {
     private String nome;
     private String cpf;
     @OneToMany(mappedBy = "prof", fetch = FetchType.EAGER)
-    List<Curso> cursos;
+    List<Curso> cursos = new ArrayList<>();
 
     @PreRemove
     public void atualizarCursosAntesDeDeletarProfessor(){
