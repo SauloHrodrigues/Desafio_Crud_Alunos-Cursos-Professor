@@ -1,5 +1,6 @@
 package com.cursoadm.cursoadm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Professor {
     private String nome;
     private String cpf;
     @OneToMany(mappedBy = "prof", fetch = FetchType.EAGER)
+    @JsonIgnore
     List<Curso> cursos = new ArrayList<>();
 
     @PreRemove

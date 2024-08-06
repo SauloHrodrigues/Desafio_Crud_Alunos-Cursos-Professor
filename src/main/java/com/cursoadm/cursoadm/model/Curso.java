@@ -1,5 +1,6 @@
 package com.cursoadm.cursoadm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +24,10 @@ public class Curso {
 
     @ManyToOne
     @JoinColumn(name = "p_id", nullable = false)
+    @JsonIgnore
     private Professor prof;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(name = "Tabela_de_Juncao",
                 joinColumns = @JoinColumn(name = "curso_id"),
                 inverseJoinColumns = @JoinColumn(name = "aluno_id"))

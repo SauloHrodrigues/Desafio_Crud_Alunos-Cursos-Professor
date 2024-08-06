@@ -1,5 +1,6 @@
 package com.cursoadm.cursoadm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,8 @@ public class Aluno {
     private Long id;
     private String nome;
     private String cpf;
-    @ManyToMany(mappedBy = "alunos")
+    @ManyToMany(mappedBy = "alunos" , fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Curso> cursos= new HashSet<>();
 
 }

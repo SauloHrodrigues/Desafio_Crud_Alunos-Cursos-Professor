@@ -1,13 +1,6 @@
 package com.cursoadm.cursoadm.controllers;
 
-import com.cursoadm.cursoadm.dtos.aluno.AlunoAtualizarDto;
-import com.cursoadm.cursoadm.dtos.aluno.AlunoRequestDto;
-import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
-import com.cursoadm.cursoadm.dtos.aluno.MatricularAlunoDto;
-import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
-import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
-import com.cursoadm.cursoadm.model.Aluno;
-import com.cursoadm.cursoadm.model.Curso;
+import com.cursoadm.cursoadm.dtos.aluno.*;
 import com.cursoadm.cursoadm.services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,20 +14,29 @@ public class AlunoController {
     @Autowired
     AlunoService alunoService;
 
+    // Criar Aluno - OK
     @PostMapping()
     public ResponseEntity<AlunoResponseDto> criar(@RequestBody AlunoRequestDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(alunoService.criarAluno(dto));
     }
-//    Cadastrar aluno no curso
-    @PostMapping("/matricula")
-    public ResponseEntity matricular(@RequestBody MatricularAlunoDto dto){
-        alunoService.matricularAluno(dto);
+//    Cadastrar aluno no curso - OK
+    @PostMapping("/{id}")
+    public ResponseEntity matricular(@PathVariable Long id, @RequestBody Id_CursoRequestDto idCurso){
+        alunoService.matricularAluno(id,idCurso);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 //    Sair do curso
 
-//    ver se aluno esta cadastrado em um curso
-
+//    ver se aluno esta cadastrado em um curso - ok
+    @GetMapping("/{id}")
+    public ResponseEntity<AlunoResponseDto> consultarAlunoNoCurso(@PathVariable Long id, @RequestBody  Id_CursoRequestDto dto){
+                AlunoResponseDto resposta = alunoService.alunoEstaCadastradoNoCurso(id, dto);
+                if(resposta == null){
+                    return ResponseEntity.status(404).build();
+                }else{
+                    return ResponseEntity.status(HttpStatus.FOUND).body(alunoService.alunoEstaCadastradoNoCurso(id, dto));
+                }
+    }
 //    excluir Aluno
     @DeleteMapping("/{id}")
     public ResponseEntity excluir(@PathVariable Long id){
@@ -46,5 +48,4 @@ public class AlunoController {
     public ResponseEntity<AlunoResponseDto> atualizar(@RequestBody AlunoAtualizarDto dto, @PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(alunoService.atualizar(dto,id));
     }
-
 }

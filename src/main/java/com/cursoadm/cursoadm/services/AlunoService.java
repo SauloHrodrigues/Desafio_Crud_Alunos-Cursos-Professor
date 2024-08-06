@@ -1,10 +1,6 @@
 package com.cursoadm.cursoadm.services;
 
-import com.cursoadm.cursoadm.dtos.aluno.AlunoAtualizarDto;
-import com.cursoadm.cursoadm.dtos.aluno.AlunoRequestDto;
-import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
-import com.cursoadm.cursoadm.dtos.aluno.MatricularAlunoDto;
-import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
+import com.cursoadm.cursoadm.dtos.aluno.*;
 import com.cursoadm.cursoadm.mappers.AlunoMapper;
 import com.cursoadm.cursoadm.model.Aluno;
 import com.cursoadm.cursoadm.model.Curso;
@@ -12,9 +8,9 @@ import com.cursoadm.cursoadm.repositories.AlunoRepository;
 import com.cursoadm.cursoadm.repositories.CursoRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class AlunoService {
@@ -35,10 +31,22 @@ public class AlunoService {
         return alunoMapper.toResponseDto(novoAluno);
     }
 
+//    buscar Aluno
+
+    public AlunoResponseDto buscarAluno(Long id){
+        Aluno aluno = buscarAlunoPorId(id);
+        Set<Curso>  cursoDoAluno = aluno.getCursos();
+        AlunoResponseDto resposta = new AlunoResponseDto(
+                aluno.getId(), aluno.getNome(),aluno.getCpf(),cursoDoAluno);
+
+        return alunoMapper.toResponseDto(aluno);
+    }
+
     //     Cadastrar aluno no curso
-    public void matricularAluno(MatricularAlunoDto dto){
+    public void matricularAluno(Long idAluno, Id_CursoRequestDto dto){
+        System.out.println("Entrou no matricular");
         Curso curso = buscarCursoPorId(dto.idCurso());
-        Aluno aluno = buscarAlunoPorId(dto.idAluno());
+        Aluno aluno = buscarAlunoPorId(idAluno);
         if(curso.getAlunos()==null){
             curso.setAlunos(new HashSet<>());
         }
@@ -49,6 +57,15 @@ public class AlunoService {
 //    Sair do curso
 
 //    ver se aluno esta cadastrado em um curso
+    public AlunoResponseDto alunoEstaCadastradoNoCurso(Long idAluno, Id_CursoRequestDto dto){
+        Aluno aluno = buscarAlunoPorId(idAluno);
+        Curso curso = buscarCursoPorId(dto.idCurso());
+        if(aluno.getCursos().contains(curso)){
+            return alunoMapper.toResponseDto(aluno);
+        }else {
+            return null;
+        }
+    }
 
 //    excluir Aluno
     public void excluir(Long id){
