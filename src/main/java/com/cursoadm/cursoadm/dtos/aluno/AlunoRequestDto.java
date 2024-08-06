@@ -7,7 +7,6 @@ import java.util.Set;
 
 public record AlunoRequestDto(
         String nome,
-        String cpf,
-        Long idCurso
+        String cpf
 ) {
 }
