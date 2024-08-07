@@ -28,8 +28,8 @@ public class AlunoController {
 
 //    Sair do curso
     @PatchMapping("/matricula/{idAluno}")
-    public ResponseEntity sairDoCurso(@PathVariable Long idAluno, @RequestBody Id_CursoRequestDto idCurso){
-        alunoService.desmatricula(idAluno,idCurso);
+    public ResponseEntity sairDoCurso(@PathVariable Long idAluno, @RequestBody Id_CursoRequestDto dto){
+        alunoService.desmatricula(idAluno,dto.idCurso());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

@@ -8,6 +8,7 @@ import com.cursoadm.cursoadm.repositories.AlunoRepository;
 import com.cursoadm.cursoadm.repositories.CursoRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -57,8 +58,8 @@ public class AlunoService {
     }
 
 //    Sair do curso
-    public void desmatricula(Long idAluno, Id_CursoRequestDto dto){
-        Curso curso = buscarCursoPorId(dto.idCurso());
+    public void desmatricula(Long idAluno, Long idCurso){
+        Curso curso = buscarCursoPorId(idCurso);
         Aluno aluno = buscarAlunoPorId(idAluno);
 
         if(curso.getAlunos().remove(aluno)){
@@ -83,8 +84,14 @@ public class AlunoService {
     }
 
 //    excluir Aluno
+    @Transactional
     public void excluir(Long id){
         Aluno aluno = buscarAlunoPorId(id);
+        for(Curso curso : aluno.getCursos()){
+            curso.getAlunos().remove(aluno);
+            cursoRepositoy.save(curso);
+        }
+
         alunoRepository.delete(aluno);
     }
 

@@ -8,6 +8,7 @@ import com.cursoadm.cursoadm.mappers.CursoMapper;
 import com.cursoadm.cursoadm.model.Aluno;
 import com.cursoadm.cursoadm.model.Curso;
 import com.cursoadm.cursoadm.model.Professor;
+import com.cursoadm.cursoadm.repositories.AlunoRepository;
 import com.cursoadm.cursoadm.repositories.CursoRepositoy;
 import com.cursoadm.cursoadm.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class CursoService {
 
     @Autowired
     private CursoRepositoy cursoRepositoy;
+    @Autowired
+    private AlunoRepository alunoRepository;
     @Autowired
     private ProfessorRepository professorRepository;
 
@@ -66,6 +69,11 @@ public class CursoService {
 
     public void excluir(Long id){
         Curso curso= buscarCursoPorId(id);
+        for(Aluno aluno : curso.getAlunos()){
+            aluno.getCursos().remove(curso);
+            alunoRepository.save(aluno);
+        }
+
         cursoRepositoy.delete(curso);
     }
 
