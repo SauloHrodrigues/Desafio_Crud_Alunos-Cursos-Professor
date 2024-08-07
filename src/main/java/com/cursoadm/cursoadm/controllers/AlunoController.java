@@ -25,7 +25,13 @@ public class AlunoController {
         alunoService.matricularAluno(id,idCurso);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
 //    Sair do curso
+    @PatchMapping("/matricula/{idAluno}")
+    public ResponseEntity sairDoCurso(@PathVariable Long idAluno, @RequestBody Id_CursoRequestDto idCurso){
+        alunoService.desmatricula(idAluno,idCurso);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 
 //    ver se aluno esta cadastrado em um curso - ok
     @GetMapping("/{id}")
