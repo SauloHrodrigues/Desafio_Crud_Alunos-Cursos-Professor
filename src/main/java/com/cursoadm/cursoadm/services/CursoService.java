@@ -67,15 +67,15 @@ public class CursoService {
         return cursoMapper.toResponseDto(cursoProcurado);
     }
 
-    public void excluir(Long id){
-        Curso curso= buscarCursoPorId(id);
-        for(Aluno aluno : curso.getAlunos()){
-            aluno.getCursos().remove(curso);
-            alunoRepository.save(aluno);
-        }
+    // public void excluir(Long id){
+    //     Curso curso= buscarCursoPorId(id);
+    //     for(Aluno aluno : curso.getAlunos()){
+    //         aluno.getCursos().remove(curso);
+    //         alunoRepository.save(aluno);
+    //     }
 
-        cursoRepositoy.delete(curso);
-    }
+    //     cursoRepositoy.delete(curso);
+    // }
 
     public List<CursoResponseDTO> lista(){
         List<Curso> listaAll = cursoRepositoy.findAll();
@@ -86,18 +86,25 @@ public class CursoService {
         return resposta;
     }
 
-    public List<AlunoResponseDto> listaDeAlunos(Long id ){
-        Curso curso = buscarCursoPorId(id);
-        List<AlunoResponseDto> alunos = new ArrayList<>();
-        for(Aluno aluno : curso.getAlunos()){
-            alunos.add(alunoMapper.toResponseDto(aluno));
-        }
-        return alunos;
-    }
+    // public List<AlunoResponseDto> listaDeAlunos(Long id ){
+    //     Curso curso = buscarCursoPorId(id);
+    //     List<AlunoResponseDto> alunos = new ArrayList<>();
+    //     for(Aluno aluno : curso.getAlunos()){
+    //         alunos.add(alunoMapper.toResponseDto(aluno));
+    //     }
+    //     return alunos;
+    // }
 
     private Curso buscarCursoPorId(Long id){
         return cursoRepositoy.findById(id).orElseThrow(()-> new RuntimeException("O curso com id "+id+" " +
                 "não foi encontrado!"));
+    }
+
+    public CursoResponseDTO getCursoById(Long id) {
+        Curso curso = cursoRepositoy.findById(id).
+            orElseThrow(() -> new RuntimeException("Nao encontrado"));
+
+        return cursoMapper.toResponseDto(curso);
     }
 
 }
