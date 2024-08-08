@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -26,11 +24,15 @@ public class Curso {
     @JoinColumn(name = "p_id", nullable = false)
     @JsonIgnore
     private Professor prof;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnore
-    @JoinTable(name = "Tabela_de_Juncao",
-                joinColumns = @JoinColumn(name = "curso_id"),
-                inverseJoinColumns = @JoinColumn(name = "aluno_id"))
-    private Set<Aluno> alunos;
+    
+    // @ManyToMany(fetch = FetchType.EAGER)
+    // @JsonIgnore
+    // @JoinTable(name = "Tabela_de_Juncao",
+    //             joinColumns = @JoinColumn(name = "curso_id"),
+    //             inverseJoinColumns = @JoinColumn(name = "aluno_id"))
+    // private Set<Aluno> alunos;
 
+    @OneToMany(mappedBy = "curso")
+    @JsonIgnore
+    private Set<Matricula> matriculas;
 }

@@ -6,6 +6,9 @@ import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
 import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
 import com.cursoadm.cursoadm.model.Aluno;
 import com.cursoadm.cursoadm.model.Curso;
+
+import java.util.List;
+
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -16,9 +19,13 @@ public interface AlunoMapper {
     AlunoResponseDto toResponseDto(Aluno aluno);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "matriculas", ignore = true)
     Aluno toEntity(AlunoRequestDto dto);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "matriculas", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateAlunoFromResponseDto(@MappingTarget Aluno aluno, AlunoAtualizarDto dtoUpdade);
 
+    List<AlunoResponseDto> toResponseDto(List<Aluno> alunos);
 }

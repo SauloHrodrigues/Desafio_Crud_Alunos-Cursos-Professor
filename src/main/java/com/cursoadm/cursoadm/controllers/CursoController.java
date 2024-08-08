@@ -28,20 +28,25 @@ public class CursoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.atualizar(dto,id));
     }
     //Excluir Curso
-    @DeleteMapping("/{id}")
-    public ResponseEntity excluir(@PathVariable Long id){
-        service.excluir(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity excluir(@PathVariable Long id){
+    //     service.excluir(id);
+    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    // }
     //Ver os Alunos do Curso
-    @GetMapping("/{id}")
-    public ResponseEntity<List<AlunoResponseDto>> alunos(@PathVariable Long id){
-        List<AlunoResponseDto> alunosList = service.listaDeAlunos(id);
-        return ResponseEntity.status(HttpStatus.OK).body(alunosList);
-    }
+    // @GetMapping("/{id}/alunos")
+    // public ResponseEntity<List<AlunoResponseDto>> alunos(@PathVariable Long id){
+    //     List<AlunoResponseDto> alunosList = service.listaDeAlunos(id);
+    //     return ResponseEntity.status(HttpStatus.OK).body(alunosList);
+    // }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CursoResponseDTO> getCurso(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getCursoById(id));
+    }
     //Ver todos os cursos
-    @GetMapping("/listar")
+    //Nao utilizar verbos na rota. Um get sem nenhum argumento na rota já é suficiente pra entender que retornará todos os objetos.
+    @GetMapping()
     public ResponseEntity<List<CursoResponseDTO>> lista(){
         List<CursoResponseDTO> lista = service.lista();
         return ResponseEntity.status(HttpStatus.OK).body(lista);
