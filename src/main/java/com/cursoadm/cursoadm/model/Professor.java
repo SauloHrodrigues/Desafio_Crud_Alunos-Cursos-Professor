@@ -23,7 +23,7 @@ public class Professor {
     private String cpf;
     @OneToMany(mappedBy = "prof", fetch = FetchType.EAGER)
     @JsonIgnore
-    List<Curso> cursos = new ArrayList<>();
+    List<Curso> cursos;
 
     @PreRemove
     public void atualizarCursosAntesDeDeletarProfessor(){
