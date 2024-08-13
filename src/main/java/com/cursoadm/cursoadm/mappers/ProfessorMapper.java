@@ -21,6 +21,10 @@ public interface ProfessorMapper {
     @Mapping(target = "cursos", ignore = true)
     Professor toEntity(ProfessorRequestDto dto);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "cursos", ignore = true)
+    Professor toEntity(ProfessorAtualizadoDto dto);
+
     ProfessorResponseDto toResponseDto(Professor professor);
 
     @Mapping(target = "id", ignore = true)

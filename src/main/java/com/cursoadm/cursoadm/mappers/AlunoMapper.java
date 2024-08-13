@@ -3,9 +3,7 @@ package com.cursoadm.cursoadm.mappers;
 import com.cursoadm.cursoadm.dtos.aluno.AlunoAtualizarDto;
 import com.cursoadm.cursoadm.dtos.aluno.AlunoRequestDto;
 import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
-import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
 import com.cursoadm.cursoadm.model.Aluno;
-import com.cursoadm.cursoadm.model.Curso;
 
 import java.util.List;
 
@@ -27,5 +25,5 @@ public interface AlunoMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateAlunoFromResponseDto(@MappingTarget Aluno aluno, AlunoAtualizarDto dtoUpdade);
 
-    List<AlunoResponseDto> toResponseDto(List<Aluno> alunos);
+    List<AlunoResponseDto> toListResponseDto(List<Aluno> alunos);
 }

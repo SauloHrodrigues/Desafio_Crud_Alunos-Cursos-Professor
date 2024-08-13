@@ -52,10 +52,6 @@ public class ProfessorService {
     //    deletar
     public void apagar(Long id) {
         Professor professor = buscarProfessoPorId(id);
-        for(Curso curso: professor.getCursos()){
-            curso.setProf(null);
-            cursoRepositoy.save(curso);
-        }
         professorRepository.delete(professor);
     }
 

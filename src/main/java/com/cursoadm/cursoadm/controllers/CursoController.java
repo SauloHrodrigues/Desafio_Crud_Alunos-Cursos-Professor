@@ -1,7 +1,7 @@
 package com.cursoadm.cursoadm.controllers;
 
-import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
-import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoAtualizarDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoCadastroDTO;
 import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
 import com.cursoadm.cursoadm.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +17,12 @@ public class CursoController {
     @Autowired
     CursoService service;
 
-    // Criar Curso
+    // Criar Curso - ok
     @PostMapping()
-    public ResponseEntity<CursoResponseDTO> create (@RequestBody CursoRequestDTO dto){
+    public ResponseEntity<CursoResponseDTO> create (@RequestBody CursoCadastroDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(dto));
     }
-    //Atualizar Curso
-    @PutMapping("/{id}")
-    public ResponseEntity<CursoResponseDTO> update(@RequestBody CursoRequestDTO dto, @PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(service.atualizar(dto,id));
-    }
-    //Excluir Curso
-    // @DeleteMapping("/{id}")
-    // public ResponseEntity excluir(@PathVariable Long id){
-    //     service.excluir(id);
-    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    // }
-    //Ver os Alunos do Curso
-    // @GetMapping("/{id}/alunos")
-    // public ResponseEntity<List<AlunoResponseDto>> alunos(@PathVariable Long id){
-    //     List<AlunoResponseDto> alunosList = service.listaDeAlunos(id);
-    //     return ResponseEntity.status(HttpStatus.OK).body(alunosList);
-    // }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CursoResponseDTO> getCurso(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(service.getCursoById(id));
-    }
     //Ver todos os cursos
     //Nao utilizar verbos na rota. Um get sem nenhum argumento na rota já é suficiente pra entender que retornará todos os objetos.
     @GetMapping()
@@ -51,5 +30,20 @@ public class CursoController {
         List<CursoResponseDTO> lista = service.lista();
         return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<CursoResponseDTO> getCurso(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getCursoById(id));
+    }
 
+    //Atualizar Curso ok
+    @PutMapping("/{id}")
+    public ResponseEntity<CursoResponseDTO> update(@RequestBody CursoAtualizarDTO dto, @PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.atualizar(dto,id));
+    }
+//    Excluir Curso - ok
+     @DeleteMapping("/{id}")
+     public ResponseEntity excluir(@PathVariable Long id){
+         service.excluir(id);
+         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+     }
 }

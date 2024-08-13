@@ -21,18 +21,18 @@ public class Curso {
     private String curso;
 
     @ManyToOne
-    @JoinColumn(name = "p_id", nullable = false)
+    @JoinColumn(name = "professor_id")//
     @JsonIgnore
-    private Professor prof;
-    
-    // @ManyToMany(fetch = FetchType.EAGER)
-    // @JsonIgnore
-    // @JoinTable(name = "Tabela_de_Juncao",
-    //             joinColumns = @JoinColumn(name = "curso_id"),
-    //             inverseJoinColumns = @JoinColumn(name = "aluno_id"))
-    // private Set<Aluno> alunos;
+    private Professor professor;
 
     @OneToMany(mappedBy = "curso")
     @JsonIgnore
     private Set<Matricula> matriculas;
+
+    public void addMatricula(Matricula matricula){
+        matriculas.add(matricula);
+    }
+    public void removerMatritcula(Matricula matricula){
+        matriculas.remove(matricula);
+    }
 }

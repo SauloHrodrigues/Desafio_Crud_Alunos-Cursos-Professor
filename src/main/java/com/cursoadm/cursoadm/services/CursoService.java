@@ -1,15 +1,16 @@
 package com.cursoadm.cursoadm.services;
 
-import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
-import com.cursoadm.cursoadm.dtos.curso.CursoRequestDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoAtualizarDTO;
+import com.cursoadm.cursoadm.dtos.curso.CursoCadastroDTO;
 import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
-import com.cursoadm.cursoadm.mappers.AlunoMapper;
 import com.cursoadm.cursoadm.mappers.CursoMapper;
+import com.cursoadm.cursoadm.mappers.ProfessorMapper;
 import com.cursoadm.cursoadm.model.Aluno;
 import com.cursoadm.cursoadm.model.Curso;
+import com.cursoadm.cursoadm.model.Matricula;
 import com.cursoadm.cursoadm.model.Professor;
-import com.cursoadm.cursoadm.repositories.AlunoRepository;
 import com.cursoadm.cursoadm.repositories.CursoRepositoy;
+import com.cursoadm.cursoadm.repositories.MatriculaRepository;
 import com.cursoadm.cursoadm.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,59 +24,66 @@ public class CursoService {
 
     @Autowired
     private CursoRepositoy cursoRepositoy;
-    @Autowired
-    private AlunoRepository alunoRepository;
+
     @Autowired
     private ProfessorRepository professorRepository;
 
+    @Autowired
+    private MatriculaRepository matriculaRepository;
+
     private final CursoMapper cursoMapper = CursoMapper.INSTANCE;
-    private final AlunoMapper alunoMapper = AlunoMapper.INSTANCE;
+    private final ProfessorMapper professorMapper = ProfessorMapper.INSTANCE;
 
 
-    public CursoResponseDTO criar(CursoRequestDTO dto){
+
+    public CursoResponseDTO criar(CursoCadastroDTO dto){
         Optional<Curso> curso = cursoRepositoy.findByCurso(dto.curso());
-        Optional<Professor> professor = professorRepository.findByCpf(dto.professor().getCpf());
-        Professor novoProfessor;
         Curso novoCurso;
+        Professor professor;
         if(curso.isPresent()){
             throw new RuntimeException("Curso já cadastrado");
-        } else{
-            if (!professor.isPresent()){
-                novoProfessor = new Professor();
-                novoProfessor.setNome(dto.professor().getNome());
-                novoProfessor.setCpf(dto.professor().getCpf());
-
-            }else{
-                novoProfessor = professor.get();
-            }
-            novoCurso= new Curso();
-            novoCurso.setCurso(dto.curso());
-            novoCurso.setProf(novoProfessor);
-            novoProfessor.getCursos().add(novoCurso);
-            professorRepository.save(novoProfessor);
-            cursoRepositoy.save(novoCurso);
-
         }
 
+        novoCurso = cursoMapper.toEntity(dto);
+
+        if(dto.id_professor()!=null) { //tem professor
+            professor = professorRepository.findById(dto.id_professor()).orElseThrow(
+                    ()-> new RuntimeException("O professor de id "+dto.id_professor()+" não foi encontrado!")
+            );
+
+            System.out.println("O Professor é = "+professor.getNome());
+            novoCurso.setProfessor(professor);
+        }
+        cursoRepositoy.save(novoCurso);
         return cursoMapper.toResponseDto(novoCurso);
+
     }
 
-    public CursoResponseDTO atualizar(CursoRequestDTO dto, Long id){
-        Curso cursoProcurado = cursoRepositoy.findById(id).orElseThrow(()-> new RuntimeException("O curso co id "+id+" não foi encontrado!"));
+    public CursoResponseDTO atualizar(CursoAtualizarDTO dto, Long id){
+        Curso cursoProcurado = buscarCursoPorId(id);
+
+        if(dto.id_professor()!=null) { //tem professor
+            Professor professor = professorRepository.findById(dto.id_professor()).orElseThrow(
+                    ()-> new RuntimeException("O professor de id "+dto.id_professor()+" não foi encontrado!")
+            );
+            cursoProcurado.setProfessor(professor);
+            professor.getCursos().add(cursoProcurado);
+            professorRepository.save(professor);
+            cursoProcurado.setProfessor(professor);
+        }
+
         cursoMapper.updateAuthorFromResponseDto(cursoProcurado,dto);
         cursoRepositoy.save(cursoProcurado);
         return cursoMapper.toResponseDto(cursoProcurado);
     }
 
-    // public void excluir(Long id){
-    //     Curso curso= buscarCursoPorId(id);
-    //     for(Aluno aluno : curso.getAlunos()){
-    //         aluno.getCursos().remove(curso);
-    //         alunoRepository.save(aluno);
-    //     }
-
-    //     cursoRepositoy.delete(curso);
-    // }
+     public void excluir(Long id){
+         Curso curso= buscarCursoPorId(id);
+         for(Matricula matricula : curso.getMatriculas()){
+             matriculaRepository.delete(matricula);
+         }
+         cursoRepositoy.delete(curso);
+     }
 
     public List<CursoResponseDTO> lista(){
         List<Curso> listaAll = cursoRepositoy.findAll();
@@ -86,25 +94,13 @@ public class CursoService {
         return resposta;
     }
 
-    // public List<AlunoResponseDto> listaDeAlunos(Long id ){
-    //     Curso curso = buscarCursoPorId(id);
-    //     List<AlunoResponseDto> alunos = new ArrayList<>();
-    //     for(Aluno aluno : curso.getAlunos()){
-    //         alunos.add(alunoMapper.toResponseDto(aluno));
-    //     }
-    //     return alunos;
-    // }
+    public CursoResponseDTO getCursoById(Long id) {
+        Curso curso = buscarCursoPorId(id);
+        return cursoMapper.toResponseDto(curso);
+    }
 
     private Curso buscarCursoPorId(Long id){
         return cursoRepositoy.findById(id).orElseThrow(()-> new RuntimeException("O curso com id "+id+" " +
                 "não foi encontrado!"));
     }
-
-    public CursoResponseDTO getCursoById(Long id) {
-        Curso curso = cursoRepositoy.findById(id).
-            orElseThrow(() -> new RuntimeException("Nao encontrado"));
-
-        return cursoMapper.toResponseDto(curso);
-    }
-
 }

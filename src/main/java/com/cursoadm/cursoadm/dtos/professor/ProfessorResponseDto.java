@@ -7,8 +7,8 @@ import java.util.Set;
 public record ProfessorResponseDto(
         Long id,
         String nome,
-        String cpf,
-        Set<Curso> cursos
+        String cpf
+//        Set<Curso> cursos
 
 ) {
 }

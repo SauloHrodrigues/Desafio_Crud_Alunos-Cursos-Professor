@@ -21,15 +21,8 @@ public class Professor {
     private Long id;
     private String nome;
     private String cpf;
-    @OneToMany(mappedBy = "prof", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "professor", fetch = FetchType.EAGER)
     @JsonIgnore
     List<Curso> cursos;
 
-    @PreRemove
-    public void atualizarCursosAntesDeDeletarProfessor(){
-        System.out.println("atualizarCursosAntesDeDeletarProfessor");
-        for(Curso curso: this.cursos){
-            curso.setProf(null);
-        }
-    }
 }
