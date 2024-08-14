@@ -6,10 +6,7 @@ import com.cursoadm.cursoadm.model.Professor;
 import jakarta.validation.constraints.NotBlank;
 
 public record CursoAtualizarDTO(
-        @NotBlank(message = "O campo curso deve ser preenchido")
         String curso,
-        Professor professor,
         Long id_professor
 ) {
-
 }

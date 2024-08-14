@@ -64,8 +64,10 @@ public class CursoService {
             professorRepository.save(professor);
             cursoProcurado.setProfessor(professor);
         }
+        if (dto.curso()!= null){
+            cursoProcurado.setCurso(dto.curso());
+        }
 
-        cursoMapper.updateAuthorFromResponseDto(cursoProcurado,dto);
         cursoRepositoy.save(cursoProcurado);
         return cursoMapper.toResponseDto(cursoProcurado);
     }
