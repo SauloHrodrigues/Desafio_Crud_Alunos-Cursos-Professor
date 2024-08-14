@@ -34,29 +34,22 @@ public class CursoService {
     private final CursoMapper cursoMapper = CursoMapper.INSTANCE;
     private final ProfessorMapper professorMapper = ProfessorMapper.INSTANCE;
 
-
-
     public CursoResponseDTO criar(CursoCadastroDTO dto){
         Optional<Curso> curso = cursoRepositoy.findByCurso(dto.curso());
         Curso novoCurso;
         Professor professor;
+
         if(curso.isPresent()){
             throw new RuntimeException("Curso já cadastrado");
         }
 
         novoCurso = cursoMapper.toEntity(dto);
-
-        if(dto.id_professor()!=null) { //tem professor
-            professor = professorRepository.findById(dto.id_professor()).orElseThrow(
-                    ()-> new RuntimeException("O professor de id "+dto.id_professor()+" não foi encontrado!")
-            );
-
-            System.out.println("O Professor é = "+professor.getNome());
-            novoCurso.setProfessor(professor);
-        }
+        professor = professorRepository.findById(dto.id_professor()).orElseThrow(
+                ()-> new RuntimeException("O professor de id "+dto.id_professor()+" não foi encontrado!")
+        );
+        novoCurso.setProfessor(professor);
         cursoRepositoy.save(novoCurso);
         return cursoMapper.toResponseDto(novoCurso);
-
     }
 
     public CursoResponseDTO atualizar(CursoAtualizarDTO dto, Long id){
