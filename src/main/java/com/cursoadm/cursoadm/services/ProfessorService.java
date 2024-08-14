@@ -35,11 +35,7 @@ public class ProfessorService {
     //    ler
     public List<ProfessorResponseDto> listar() {
         List<Professor> professores = professorRepository.findAll();
-        List<ProfessorResponseDto> professorResponseDtoList = new ArrayList<>();
-        for(Professor prof: professores){
-            professorResponseDtoList.add(professorMapper.toResponseDto(prof));
-        }
-        return professorResponseDtoList;
+        return professorMapper.toResponseDto(professores);
     }
 
     //    atualizar

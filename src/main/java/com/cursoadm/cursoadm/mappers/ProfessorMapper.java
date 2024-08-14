@@ -27,6 +27,8 @@ public interface ProfessorMapper {
 
     ProfessorResponseDto toResponseDto(Professor professor);
 
+    List<ProfessorResponseDto> toResponseDto(List<Professor> professores);
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "cursos", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
