@@ -23,6 +23,12 @@ public class Professor {
     private String cpf;
     @OneToMany(mappedBy = "professor", fetch = FetchType.EAGER)
     @JsonIgnore
-    List<Curso> cursos;
+    List<Curso> cursos = new ArrayList<>();
 
+    public void addMatricula(Curso curso){
+        cursos.add(curso);
+    }
+    public void removerMatritcula(Curso curso){
+        cursos.remove(curso);
+    }
 }
