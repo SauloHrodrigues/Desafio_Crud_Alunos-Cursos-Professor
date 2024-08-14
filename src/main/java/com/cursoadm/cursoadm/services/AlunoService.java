@@ -61,7 +61,7 @@ public class AlunoService {
         alunoRepository.delete(aluno);
     }
 
-    private Aluno buscarAluno(Long id){
+    public Aluno buscarAluno(Long id){
         return alunoRepository.findById(id).orElseThrow(
                 ()-> new RuntimeException("O aluno com ID "+id+" não foi encontrado!"));
     }

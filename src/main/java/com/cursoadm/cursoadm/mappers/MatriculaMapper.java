@@ -16,6 +16,14 @@ import java.util.List;
 @Mapper
 public interface MatriculaMapper {
     MatriculaMapper INSTANCE = Mappers.getMapper(MatriculaMapper.class);
+
+    @Mapping(target = "id", ignore = true)
+    default Matricula toEntity(Aluno aluno, Curso curso){
+        Matricula matricula = new Matricula();
+        matricula.setCurso(curso);
+        matricula.setAluno(aluno);
+        return matricula;
+    }
     MatriculaResponseDto toResponseDto(Matricula matricula);
     List<MatriculaResponseDto> toListResponseDto(List<Matricula>matriculas);
 

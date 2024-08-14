@@ -94,7 +94,7 @@ public class CursoService {
         return cursoMapper.toResponseDto(curso);
     }
 
-    private Curso buscarCursoPorId(Long id){
+    public Curso buscarCursoPorId(Long id){
         return cursoRepositoy.findById(id).orElseThrow(()-> new RuntimeException("O curso com id "+id+" " +
                 "não foi encontrado!"));
     }

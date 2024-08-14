@@ -17,15 +17,20 @@ import java.util.List;
 @Service
 public class MatriculaService {
     @Autowired
-    MatriculaRepository matriculaRepository;
-    MatriculaMapper matriculaMapper = MatriculaMapper.INSTANCE;
+    private MatriculaRepository matriculaRepository;
+
+    @Autowired
+    private AlunoService alunoService;
+
+    @Autowired
+    private CursoService cursoService;
+
+    private final MatriculaMapper matriculaMapper = MatriculaMapper.INSTANCE;
 
     public MatriculaResponseDto criar(MatriculaRequestDto dto) {
-        Aluno aluno = buscarAluno(dto.idAluno());
-        Curso curso = buscarCurso(dto.idCurso());
-        Matricula matricula = new Matricula();
-        matricula.setCurso(curso);
-        matricula.setAluno(aluno);
+        Aluno aluno = alunoService.buscarAluno(dto.idAluno());
+        Curso curso = cursoService.buscarCursoPorId(dto.idCurso());
+        Matricula matricula = matriculaMapper.toEntity(aluno,curso);
         matriculaRepository.save(matricula);
         return matriculaMapper.toResponseDto(matricula);
     }
@@ -41,20 +46,5 @@ public class MatriculaService {
                 () -> new RuntimeException("Não foi encontrado nenhuma matricula com o id: " + id)
         );
         matriculaRepository.delete(matricula);
-    }
-
-    //    Metodos Auxiliares
-    @Autowired
-    CursoRepositoy cursoRepositoy;
-    @Autowired
-    AlunoRepository alunoRepository;
-    private Curso buscarCurso(Long id){
-        return cursoRepositoy.findById(id).orElseThrow(()-> new RuntimeException("O curso com id "+id+" " +
-                "não foi encontrado!"));
-    }
-
-    private Aluno buscarAluno(Long id){
-        return alunoRepository.findById(id).orElseThrow(
-                ()-> new RuntimeException("O aluno com ID "+id+" não foi encontrado!"));
     }
 }
