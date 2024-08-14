@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -52,6 +53,14 @@ public class ProfessorService {
     //    deletar
     public void apagar(Long id) {
         Professor professor = buscarProfessoPorId(id);
+        List<Curso> cursos = cursoRepositoy.findAll();
+        for(Curso curso: cursos){
+            if(curso.getProfessor()==professor){
+                throw new RuntimeException("O professor de id "+id+" não pode ser deletado, pois" +
+                        " esta vinculado ao curso "+ curso.getCurso());
+            }
+        }
+
         professorRepository.delete(professor);
     }
 

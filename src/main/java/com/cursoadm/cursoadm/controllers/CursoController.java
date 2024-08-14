@@ -4,6 +4,7 @@ import com.cursoadm.cursoadm.dtos.curso.CursoAtualizarDTO;
 import com.cursoadm.cursoadm.dtos.curso.CursoCadastroDTO;
 import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
 import com.cursoadm.cursoadm.services.CursoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class CursoController {
 
     // Criar Curso - ok
     @PostMapping()
-    public ResponseEntity<CursoResponseDTO> create (@RequestBody CursoCadastroDTO dto){
+    public ResponseEntity<CursoResponseDTO> create (@Valid @RequestBody CursoCadastroDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(dto));
     }
 

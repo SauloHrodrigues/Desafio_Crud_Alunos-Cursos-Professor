@@ -7,6 +7,7 @@ import com.cursoadm.cursoadm.dtos.matricula.MatriculaRequestDto;
 import com.cursoadm.cursoadm.dtos.matricula.MatriculaResponseDto;
 import com.cursoadm.cursoadm.services.CursoService;
 import com.cursoadm.cursoadm.services.MatriculaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class MatriculaController {
 
     // Criar Matricula -
     @PostMapping()
-    public ResponseEntity<MatriculaResponseDto> create (@RequestBody MatriculaRequestDto dto){
+    public ResponseEntity<MatriculaResponseDto> create (@Valid @RequestBody MatriculaRequestDto dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(dto));
     }
 

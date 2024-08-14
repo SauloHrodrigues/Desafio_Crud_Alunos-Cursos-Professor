@@ -1,16 +1,15 @@
 package com.cursoadm.cursoadm.controllers;
-
 import com.cursoadm.cursoadm.dtos.professor.ProfessorAtualizadoDto;
 import com.cursoadm.cursoadm.dtos.professor.ProfessorRequestDto;
 import com.cursoadm.cursoadm.dtos.professor.ProfessorResponseDto;
 import com.cursoadm.cursoadm.services.ProfessorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping(value = "/professor")
@@ -21,11 +20,10 @@ public class ProfessorController {
 
     //    cadastrar  -  OK
     @PostMapping
-    public ResponseEntity<ProfessorResponseDto> cadastrar(@RequestBody ProfessorRequestDto dto) {
+    public ResponseEntity<ProfessorResponseDto> cadastrar(@Valid @RequestBody ProfessorRequestDto dto) {
         ProfessorResponseDto resposta = service.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
-
 
     //    ler - OK
     @GetMapping

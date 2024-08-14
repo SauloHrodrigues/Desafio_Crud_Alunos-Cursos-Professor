@@ -5,6 +5,7 @@ import com.cursoadm.cursoadm.services.AlunoService;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AlunoController {
     AlunoService alunoService;
 
     @PostMapping()
-    public ResponseEntity<AlunoResponseDto> criar(@RequestBody AlunoRequestDto dto){
+    public ResponseEntity<AlunoResponseDto> criar(@Valid @RequestBody AlunoRequestDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(alunoService.criarAluno(dto));
     }
 
