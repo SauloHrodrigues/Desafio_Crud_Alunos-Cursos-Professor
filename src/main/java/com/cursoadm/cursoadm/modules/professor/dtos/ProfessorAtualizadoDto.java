@@ -1,4 +1,4 @@
-package com.cursoadm.cursoadm.dtos.professor;
+package com.cursoadm.cursoadm.modules.professor.dtos;
 
 public record ProfessorAtualizadoDto(
         String nome,

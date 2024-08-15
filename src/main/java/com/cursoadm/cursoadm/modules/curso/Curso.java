@@ -1,33 +1,35 @@
-package com.cursoadm.cursoadm.model;
+package com.cursoadm.cursoadm.modules.curso;
 
+import com.cursoadm.cursoadm.modules.professor.Professor;
+import com.cursoadm.cursoadm.modules.matriculas.Matricula;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
 import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Aluno {
+public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    @Column(unique = true)
-    private String cpf;
+    private String curso;
 
-
-    @OneToMany(mappedBy = "aluno")
+    @ManyToOne
+    @JoinColumn(name = "professor_id")//
     @JsonIgnore
-    private Set<Matricula> matriculas = new HashSet<>();
+    private Professor professor;
+
+    @OneToMany(mappedBy = "curso")
+    @JsonIgnore
+    private Set<Matricula> matriculas;
 
     public void addMatricula(Matricula matricula){
         matriculas.add(matricula);
@@ -35,5 +37,4 @@ public class Aluno {
     public void removerMatritcula(Matricula matricula){
         matriculas.remove(matricula);
     }
-
 }

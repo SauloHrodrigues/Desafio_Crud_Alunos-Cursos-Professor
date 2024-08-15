@@ -1,9 +1,9 @@
-package com.cursoadm.cursoadm.mappers;
+package com.cursoadm.cursoadm.modules.alunos.mappers;
 
-import com.cursoadm.cursoadm.dtos.aluno.AlunoAtualizarDto;
-import com.cursoadm.cursoadm.dtos.aluno.AlunoRequestDto;
-import com.cursoadm.cursoadm.dtos.aluno.AlunoResponseDto;
-import com.cursoadm.cursoadm.model.Aluno;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoAtualizarDto;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoRequestDto;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoResponseDto;
+import com.cursoadm.cursoadm.modules.alunos.Aluno;
 
 import java.util.List;
 

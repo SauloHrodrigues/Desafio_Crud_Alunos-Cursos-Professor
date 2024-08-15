@@ -1,23 +1,18 @@
 package com.cursoadm.cursoadm.services;
 
-import com.cursoadm.cursoadm.dtos.aluno.*;
 import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
-import com.cursoadm.cursoadm.mappers.AlunoMapper;
-import com.cursoadm.cursoadm.model.Aluno;
-import com.cursoadm.cursoadm.model.Curso;
-import com.cursoadm.cursoadm.model.Matricula;
+import com.cursoadm.cursoadm.modules.alunos.mappers.AlunoMapper;
+import com.cursoadm.cursoadm.modules.alunos.Aluno;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoAtualizarDto;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoRequestDto;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoResponseDto;
 import com.cursoadm.cursoadm.repositories.AlunoRepository;
 import com.cursoadm.cursoadm.repositories.CursoRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class AlunoService {

@@ -1,5 +1,6 @@
-package com.cursoadm.cursoadm.model;
+package com.cursoadm.cursoadm.modules.professor;
 
+import com.cursoadm.cursoadm.modules.curso.Curso;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,9 +1,9 @@
-package com.cursoadm.cursoadm.mappers;
+package com.cursoadm.cursoadm.modules.curso.mappers;
 
-import com.cursoadm.cursoadm.dtos.curso.CursoAtualizarDTO;
-import com.cursoadm.cursoadm.dtos.curso.CursoCadastroDTO;
-import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
-import com.cursoadm.cursoadm.model.Curso;
+import com.cursoadm.cursoadm.modules.curso.dtos.CursoAtualizarDTO;
+import com.cursoadm.cursoadm.modules.curso.dtos.CursoCadastroDTO;
+import com.cursoadm.cursoadm.modules.curso.dtos.CursoResponseDTO;
+import com.cursoadm.cursoadm.modules.curso.Curso;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

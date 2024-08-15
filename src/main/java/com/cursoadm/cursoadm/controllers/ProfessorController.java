@@ -1,7 +1,7 @@
 package com.cursoadm.cursoadm.controllers;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorAtualizadoDto;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorRequestDto;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorResponseDto;
+import com.cursoadm.cursoadm.modules.professor.dtos.ProfessorAtualizadoDto;
+import com.cursoadm.cursoadm.modules.professor.dtos.ProfessorRequestDto;
+import com.cursoadm.cursoadm.modules.professor.dtos.ProfessorResponseDto;
 import com.cursoadm.cursoadm.services.ProfessorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

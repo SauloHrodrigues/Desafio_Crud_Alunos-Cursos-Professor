@@ -1,4 +1,4 @@
-package com.cursoadm.cursoadm.dtos.professor;
+package com.cursoadm.cursoadm.modules.professor.dtos;
 import jakarta.validation.constraints.NotBlank;
 
 public record ProfessorRequestDto(

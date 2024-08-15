@@ -1,11 +1,7 @@
 package com.cursoadm.cursoadm.controllers;
 
-import com.cursoadm.cursoadm.dtos.curso.CursoAtualizarDTO;
-import com.cursoadm.cursoadm.dtos.curso.CursoCadastroDTO;
-import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
-import com.cursoadm.cursoadm.dtos.matricula.MatriculaRequestDto;
-import com.cursoadm.cursoadm.dtos.matricula.MatriculaResponseDto;
-import com.cursoadm.cursoadm.services.CursoService;
+import com.cursoadm.cursoadm.modules.matriculas.dtos.MatriculaRequestDto;
+import com.cursoadm.cursoadm.modules.matriculas.dtos.MatriculaResponseDto;
 import com.cursoadm.cursoadm.services.MatriculaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

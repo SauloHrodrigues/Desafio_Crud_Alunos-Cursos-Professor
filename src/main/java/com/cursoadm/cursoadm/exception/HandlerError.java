@@ -9,6 +9,6 @@ public class HandlerError {
 
     @ExceptionHandler(ObjetoNaoEncontradoException.class)
     public ResponseEntity<String> handlerErrorObjetoNaoEncontradoException(ObjetoNaoEncontradoException e){
-        return ResponseEntity.badRequest().body(e.getMessage());
+        return ResponseEntity.status(e.getStatus()).body(e.getMessage());//retornar response da classe!
     }
 }

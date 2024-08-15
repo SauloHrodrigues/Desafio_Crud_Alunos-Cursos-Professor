@@ -1,6 +1,8 @@
 package com.cursoadm.cursoadm.controllers;
 
-import com.cursoadm.cursoadm.dtos.aluno.*;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoAtualizarDto;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoRequestDto;
+import com.cursoadm.cursoadm.modules.alunos.dto.AlunoResponseDto;
 import com.cursoadm.cursoadm.services.AlunoService;
 
 import java.util.List;

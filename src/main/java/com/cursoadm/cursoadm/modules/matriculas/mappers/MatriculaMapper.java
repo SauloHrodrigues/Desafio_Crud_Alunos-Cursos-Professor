@@ -1,13 +1,9 @@
-package com.cursoadm.cursoadm.mappers;
+package com.cursoadm.cursoadm.modules.matriculas.mappers;
 
-import com.cursoadm.cursoadm.dtos.matricula.MatriculaResponseDto;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorAtualizadoDto;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorRequestDto;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorResponseDto;
-import com.cursoadm.cursoadm.model.Aluno;
-import com.cursoadm.cursoadm.model.Curso;
-import com.cursoadm.cursoadm.model.Matricula;
-import com.cursoadm.cursoadm.model.Professor;
+import com.cursoadm.cursoadm.modules.matriculas.dtos.MatriculaResponseDto;
+import com.cursoadm.cursoadm.modules.alunos.Aluno;
+import com.cursoadm.cursoadm.modules.curso.Curso;
+import com.cursoadm.cursoadm.modules.matriculas.Matricula;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

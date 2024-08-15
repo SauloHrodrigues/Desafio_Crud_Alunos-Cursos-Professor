@@ -1,4 +1,4 @@
-package com.cursoadm.cursoadm.dtos.matricula;
+package com.cursoadm.cursoadm.modules.matriculas.dtos;
 
 import jakarta.validation.constraints.NotNull;
 

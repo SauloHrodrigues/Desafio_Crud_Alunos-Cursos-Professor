@@ -1,20 +1,18 @@
 package com.cursoadm.cursoadm.services;
 
-import com.cursoadm.cursoadm.dtos.professor.ProfessorAtualizadoDto;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorRequestDto;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorResponseDto;
+import com.cursoadm.cursoadm.modules.professor.dtos.ProfessorAtualizadoDto;
+import com.cursoadm.cursoadm.modules.professor.dtos.ProfessorRequestDto;
+import com.cursoadm.cursoadm.modules.professor.dtos.ProfessorResponseDto;
 import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
-import com.cursoadm.cursoadm.mappers.ProfessorMapper;
-import com.cursoadm.cursoadm.model.Curso;
-import com.cursoadm.cursoadm.model.Professor;
+import com.cursoadm.cursoadm.modules.professor.mappers.ProfessorMapper;
+import com.cursoadm.cursoadm.modules.curso.Curso;
+import com.cursoadm.cursoadm.modules.professor.Professor;
 import com.cursoadm.cursoadm.repositories.CursoRepositoy;
 import com.cursoadm.cursoadm.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service

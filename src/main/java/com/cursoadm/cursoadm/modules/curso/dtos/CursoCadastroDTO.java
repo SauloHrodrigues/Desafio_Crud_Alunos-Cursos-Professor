@@ -1,6 +1,4 @@
-package com.cursoadm.cursoadm.dtos.curso;
-import com.cursoadm.cursoadm.dtos.professor.ProfessorRequestDto;
-import com.cursoadm.cursoadm.model.Professor;
+package com.cursoadm.cursoadm.modules.curso.dtos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

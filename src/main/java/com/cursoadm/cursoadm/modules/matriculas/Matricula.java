@@ -1,5 +1,7 @@
-package com.cursoadm.cursoadm.model;
+package com.cursoadm.cursoadm.modules.matriculas;
 
+import com.cursoadm.cursoadm.modules.curso.Curso;
+import com.cursoadm.cursoadm.modules.alunos.Aluno;
 import jakarta.persistence.*;
 import lombok.*;
 

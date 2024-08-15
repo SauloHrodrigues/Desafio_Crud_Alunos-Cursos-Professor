@@ -1,15 +1,14 @@
 package com.cursoadm.cursoadm.services;
 
-import com.cursoadm.cursoadm.dtos.curso.CursoAtualizarDTO;
-import com.cursoadm.cursoadm.dtos.curso.CursoCadastroDTO;
-import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
+import com.cursoadm.cursoadm.modules.curso.dtos.CursoAtualizarDTO;
+import com.cursoadm.cursoadm.modules.curso.dtos.CursoCadastroDTO;
+import com.cursoadm.cursoadm.modules.curso.dtos.CursoResponseDTO;
 import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
-import com.cursoadm.cursoadm.mappers.CursoMapper;
-import com.cursoadm.cursoadm.mappers.ProfessorMapper;
-import com.cursoadm.cursoadm.model.Aluno;
-import com.cursoadm.cursoadm.model.Curso;
-import com.cursoadm.cursoadm.model.Matricula;
-import com.cursoadm.cursoadm.model.Professor;
+import com.cursoadm.cursoadm.modules.curso.mappers.CursoMapper;
+import com.cursoadm.cursoadm.modules.professor.mappers.ProfessorMapper;
+import com.cursoadm.cursoadm.modules.curso.Curso;
+import com.cursoadm.cursoadm.modules.matriculas.Matricula;
+import com.cursoadm.cursoadm.modules.professor.Professor;
 import com.cursoadm.cursoadm.repositories.CursoRepositoy;
 import com.cursoadm.cursoadm.repositories.MatriculaRepository;
 import com.cursoadm.cursoadm.repositories.ProfessorRepository;

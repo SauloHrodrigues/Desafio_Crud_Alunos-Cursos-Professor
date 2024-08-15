@@ -1,8 +1,4 @@
-package com.cursoadm.cursoadm.dtos.professor;
-
-import com.cursoadm.cursoadm.model.Curso;
-
-import java.util.Set;
+package com.cursoadm.cursoadm.modules.professor.dtos;
 
 public record ProfessorResponseDto(
         Long id,

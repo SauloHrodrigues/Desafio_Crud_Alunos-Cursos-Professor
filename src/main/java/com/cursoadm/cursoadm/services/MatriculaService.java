@@ -1,14 +1,12 @@
 package com.cursoadm.cursoadm.services;
 
-import com.cursoadm.cursoadm.dtos.matricula.MatriculaRequestDto;
-import com.cursoadm.cursoadm.dtos.matricula.MatriculaResponseDto;
+import com.cursoadm.cursoadm.modules.matriculas.dtos.MatriculaRequestDto;
+import com.cursoadm.cursoadm.modules.matriculas.dtos.MatriculaResponseDto;
 import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
-import com.cursoadm.cursoadm.mappers.MatriculaMapper;
-import com.cursoadm.cursoadm.model.Aluno;
-import com.cursoadm.cursoadm.model.Curso;
-import com.cursoadm.cursoadm.model.Matricula;
-import com.cursoadm.cursoadm.repositories.AlunoRepository;
-import com.cursoadm.cursoadm.repositories.CursoRepositoy;
+import com.cursoadm.cursoadm.modules.matriculas.mappers.MatriculaMapper;
+import com.cursoadm.cursoadm.modules.alunos.Aluno;
+import com.cursoadm.cursoadm.modules.curso.Curso;
+import com.cursoadm.cursoadm.modules.matriculas.Matricula;
 import com.cursoadm.cursoadm.repositories.MatriculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.cursoadm.cursoadm.repositories;
 
-import com.cursoadm.cursoadm.model.Curso;
+import com.cursoadm.cursoadm.modules.curso.Curso;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

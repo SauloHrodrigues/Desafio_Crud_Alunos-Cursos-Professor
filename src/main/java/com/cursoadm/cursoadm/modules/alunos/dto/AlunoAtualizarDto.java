@@ -1,4 +1,4 @@
-package com.cursoadm.cursoadm.dtos.aluno;
+package com.cursoadm.cursoadm.modules.alunos.dto;
 
 public record AlunoAtualizarDto(
         String nome,
