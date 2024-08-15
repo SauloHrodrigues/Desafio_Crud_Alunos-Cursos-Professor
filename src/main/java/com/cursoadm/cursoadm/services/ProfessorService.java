@@ -3,6 +3,7 @@ package com.cursoadm.cursoadm.services;
 import com.cursoadm.cursoadm.dtos.professor.ProfessorAtualizadoDto;
 import com.cursoadm.cursoadm.dtos.professor.ProfessorRequestDto;
 import com.cursoadm.cursoadm.dtos.professor.ProfessorResponseDto;
+import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
 import com.cursoadm.cursoadm.mappers.ProfessorMapper;
 import com.cursoadm.cursoadm.model.Curso;
 import com.cursoadm.cursoadm.model.Professor;
@@ -52,7 +53,7 @@ public class ProfessorService {
         List<Curso> cursos = cursoRepositoy.findAll();
         for(Curso curso: cursos){
             if(curso.getProfessor()==professor){
-                throw new RuntimeException("O professor de id "+id+" não pode ser deletado, pois" +
+                throw new ObjetoNaoEncontradoException("O professor de id "+id+" não pode ser deletado, pois" +
                         " esta vinculado ao curso "+ curso.getCurso());
             }
         }
@@ -62,7 +63,6 @@ public class ProfessorService {
 
     private Professor buscarProfessoPorId(Long id){
         return professorRepository.findById(id).orElseThrow(
-                ()-> new RuntimeException("Não foi encontrado nenhum professor com o id: "+id));
+                ()-> new ObjetoNaoEncontradoException("Não foi encontrado nenhum professor com o id: "+id));
     }
-
 }

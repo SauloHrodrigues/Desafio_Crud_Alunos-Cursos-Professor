@@ -2,6 +2,7 @@ package com.cursoadm.cursoadm.services;
 
 import com.cursoadm.cursoadm.dtos.matricula.MatriculaRequestDto;
 import com.cursoadm.cursoadm.dtos.matricula.MatriculaResponseDto;
+import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
 import com.cursoadm.cursoadm.mappers.MatriculaMapper;
 import com.cursoadm.cursoadm.model.Aluno;
 import com.cursoadm.cursoadm.model.Curso;
@@ -43,7 +44,7 @@ public class MatriculaService {
 
     public void deletar(Long id) {
         Matricula matricula = matriculaRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Não foi encontrado nenhuma matricula com o id: " + id)
+                () -> new ObjetoNaoEncontradoException("Não foi encontrado nenhuma matricula com o id: " + id)
         );
         matriculaRepository.delete(matricula);
     }

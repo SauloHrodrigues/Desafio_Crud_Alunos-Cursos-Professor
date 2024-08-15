@@ -1,6 +1,7 @@
 package com.cursoadm.cursoadm.services;
 
 import com.cursoadm.cursoadm.dtos.aluno.*;
+import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
 import com.cursoadm.cursoadm.mappers.AlunoMapper;
 import com.cursoadm.cursoadm.model.Aluno;
 import com.cursoadm.cursoadm.model.Curso;
@@ -63,6 +64,6 @@ public class AlunoService {
 
     public Aluno buscarAluno(Long id){
         return alunoRepository.findById(id).orElseThrow(
-                ()-> new RuntimeException("O aluno com ID "+id+" não foi encontrado!"));
+                ()-> new ObjetoNaoEncontradoException("O aluno com ID "+id+" não foi encontrado!"));
     }
 }

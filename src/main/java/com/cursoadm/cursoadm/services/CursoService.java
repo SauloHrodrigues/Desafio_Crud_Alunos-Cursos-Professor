@@ -3,6 +3,7 @@ package com.cursoadm.cursoadm.services;
 import com.cursoadm.cursoadm.dtos.curso.CursoAtualizarDTO;
 import com.cursoadm.cursoadm.dtos.curso.CursoCadastroDTO;
 import com.cursoadm.cursoadm.dtos.curso.CursoResponseDTO;
+import com.cursoadm.cursoadm.exception.ObjetoNaoEncontradoException;
 import com.cursoadm.cursoadm.mappers.CursoMapper;
 import com.cursoadm.cursoadm.mappers.ProfessorMapper;
 import com.cursoadm.cursoadm.model.Aluno;
@@ -40,12 +41,12 @@ public class CursoService {
         Professor professor;
 
         if(curso.isPresent()){
-            throw new RuntimeException("Curso já cadastrado");
+            throw new ObjetoNaoEncontradoException("Curso já cadastrado");
         }
 
         novoCurso = cursoMapper.toEntity(dto);
         professor = professorRepository.findById(dto.id_professor()).orElseThrow(
-                ()-> new RuntimeException("O professor de id "+dto.id_professor()+" não foi encontrado!")
+                ()-> new ObjetoNaoEncontradoException("O professor de id "+dto.id_professor()+" não foi encontrado!")
         );
         novoCurso.setProfessor(professor);
         cursoRepositoy.save(novoCurso);
@@ -57,7 +58,7 @@ public class CursoService {
 
         if(dto.id_professor()!=null) { //tem professor
             Professor professor = professorRepository.findById(dto.id_professor()).orElseThrow(
-                    ()-> new RuntimeException("O professor de id "+dto.id_professor()+" não foi encontrado!")
+                    ()-> new ObjetoNaoEncontradoException("O professor de id "+dto.id_professor()+" não foi encontrado!")
             );
             cursoProcurado.setProfessor(professor);
             professor.getCursos().add(cursoProcurado);
@@ -95,7 +96,7 @@ public class CursoService {
     }
 
     public Curso buscarCursoPorId(Long id){
-        return cursoRepositoy.findById(id).orElseThrow(()-> new RuntimeException("O curso com id "+id+" " +
+        return cursoRepositoy.findById(id).orElseThrow(()-> new ObjetoNaoEncontradoException("O curso com id "+id+" " +
                 "não foi encontrado!"));
     }
 }
